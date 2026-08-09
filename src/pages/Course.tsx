@@ -28,7 +28,7 @@ function Course() {
                     {selectedCourse.title}
                 </h1>
 
-                <div className="mr-60 ml-60 py-5">
+                <div className="mx-60 py-20">
                     <CourseContent {...selectedCourse.content} />
                 </div>
             </div>

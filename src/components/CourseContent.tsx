@@ -1,12 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 export interface Article {
     articleName: string;
     articleRef: string;
 }
-
 
 export interface Module {
     moduleName: string;
@@ -14,47 +12,56 @@ export interface Module {
     articles: Article[];
 }
 
-
 export interface ContentTable {
     content: Module[];
 }
 
-
 const CourseContent: React.FC<ContentTable> = ({ content }) => {
     return (
-        <div>
+        <div className="space-y-8">
             {content.map((module) => (
-                <table
+                <section
                     key={module.moduleName}
-                    className="w-full my-12 border border-solid border-border"
+                    className="overflow-hidden rounded-xl border border-border bg-panel shadow-sm"
                 >
-                    <thead className="border border-solid border-border">
-                        <tr>
-                            <th className="py-3 border border-solid border-border">
-                                {module.moduleName}
-                            </th>
-                        </tr>
-                    </thead>
+                    {/* Module Header */}
+                    <div className="flex items-center border-b border-border px-6 py-4">
+                        <div className="mr-3 h-6 w-1 rounded-full bg-accent-strong" />
 
-                    <tbody className="border border-solid border-border">
+                        <h2 className="text-xl font-semibold text-text">
+                            {module.moduleName}
+                        </h2>
+                    </div>
+
+                    {/* Articles */}
+                    <ul className="divide-y divide-border">
                         {module.articles.map((article) => (
-                            <tr key={article.articleRef}>
-                                <td className="py-1.5 border border-solid border-border">
-                                    <Link
-                                        to={`${module.moduleRef}/${article.articleRef}`}
-                                        className="pl-5"
-                                    >
+                            <li key={article.articleRef}>
+                                <Link
+                                    to={`${module.moduleRef}/${article.articleRef}`}
+                                    className="
+                                        group flex items-center
+                                        px-6 py-3.5
+                                        text-text
+                                        transition-colors
+                                        hover:bg-panel-2/10
+                                    "
+                                >
+                                    <span className="mr-3 text-muted transition-transform duration-200 group-hover:translate-x-1">
+                                        →
+                                    </span>
+
+                                    <span className="font-medium">
                                         {article.articleName}
-                                    </Link>
-                                </td>
-                            </tr>
+                                    </span>
+                                </Link>
+                            </li>
                         ))}
-                    </tbody>
-                </table>
+                    </ul>
+                </section>
             ))}
         </div>
     );
 };
-
 
 export default CourseContent;
