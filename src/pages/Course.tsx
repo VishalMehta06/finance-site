@@ -23,12 +23,14 @@ function Course() {
 
     return (
         <>
-            <h1 className="text-4xl text-center pt-10">
-                {selectedCourse.title}
-            </h1>
+            <div className="min-h-screen">
+                <h1 className="text-4xl text-center pt-10">
+                    {selectedCourse.title}
+                </h1>
 
-            <div className="mr-60 ml-60 py-5">
-                <CourseContent {...selectedCourse.content} />
+                <div className="mr-60 ml-60 py-5">
+                    <CourseContent {...selectedCourse.content} />
+                </div>
             </div>
         </>
     );

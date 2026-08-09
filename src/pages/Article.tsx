@@ -26,7 +26,7 @@ function Article() {
     }
 
     return (
-        <div className="mr-60 ml-60 py-10">
+        <div className="mr-60 ml-60 py-10 min-h-screen">
             <ArticleContent />
         </div>
     );

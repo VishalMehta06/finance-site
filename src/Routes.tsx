@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
-import About from "./pages/About/About";
+import About from "./pages/About";
 import Course from "./pages/Course";
 import Article from "./pages/Article";
 
@@ -20,6 +20,10 @@ export const router = createBrowserRouter([
                 element: <About />
             },
             {
+                path: "/tools",
+                element: <About />
+            },
+            {
                 path: "/:course",
                 element: <Course />
             },
@@ -30,27 +34,3 @@ export const router = createBrowserRouter([
         ]
     }
 ]);
-
-
-// export const router = createBrowserRouter([
-//     {
-//         path: "/",
-//         element: <Home />,
-//     },
-//     {
-//         path: "/about",
-//         element: <About />,
-//     },
-//     {
-//         path: "/foundation",
-//         element: <Foundation/>,
-//     },
-//     {
-//         path: "/cash-flow",
-//         element: <CashFlow/>,
-//     },
-//     {
-//         path: "/saving-and-investing",
-//         element: <SavingAndInvesting/>,
-//     },
-// ]);
