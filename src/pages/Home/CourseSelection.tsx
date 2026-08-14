@@ -13,9 +13,9 @@ function CourseSelection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-15 pt-5 pb-20">
             {courses.map((course, index) => (
                 <a key={index} href={course.href}>
-                    <div className="flex flex-col items-center h-96 pt-20 pb-10 bg-panel rounded-xl border border-border shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-                        <img src={course.picture} className="w-48 h-48" alt={course.title} />
-                        <h2 className="mt-auto text-xl text-text font-bold">{course.title}</h2>
+                    <div className="flex flex-col items-center h-75 pt-20 pb-10 bg-panel rounded-xl border border-border shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
+                        <img src={course.picture} className="w-42 h-42" alt={course.title} />
+                        <h2 className="mt-auto text-2xl font-bold">{course.title}</h2>
                     </div>
                 </a>
             ))}

@@ -6,7 +6,7 @@ function Home() {
         <>
         <div className="bg-bg">
             <Banner/>
-            <hr className="mx-10 my-12 border-0 border-t border-border"></hr>
+            <hr className="my-8 h-0.5 border-0 bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-70" />
             <div className="mr-35 ml-35">
                 <CourseSelection/>
             </div>

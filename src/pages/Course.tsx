@@ -24,7 +24,7 @@ function Course() {
     return (
         <>
             <div className="min-h-screen">
-                <h1 className="text-4xl text-center pt-10">
+                <h1 className="text-4xl text-center font-bold pt-10">
                     {selectedCourse.title}
                 </h1>
 
