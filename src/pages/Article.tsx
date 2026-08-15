@@ -59,18 +59,17 @@ function Article() {
     // Flatten the course structure into navigation order
     const navigation = getArticleNavigation(courseData.content);
 
-    // Find where the current article is in that order
+    // Find the current article
     const currentIndex = navigation.findIndex(
         item =>
             item.moduleRef === module &&
             item.articleRef === article
     );
 
-    // Get previous and next articles
     const previousArticle = navigation[currentIndex - 1];
     const nextArticle = navigation[currentIndex + 1];
 
-    // Build their URLs
+    // Build paths
     const previousPath = previousArticle
         ? `/${course}/${previousArticle.moduleRef}/${previousArticle.articleRef}`
         : null;
@@ -81,19 +80,43 @@ function Article() {
 
     return (
         <div className="relative">
-            {/* Previous article */}
+            {/* Previous article / Course */}
             <div className="fixed left-6 top-1/2 -translate-y-1/2 w-12">
-                {previousPath && (
-                    <button
-                        type="button"
-                        onClick={() => navigate(previousPath)}
-                        className="w-full h-12 rounded-lg border cursor-pointer"
-                        aria-label={`Previous article: ${previousArticle.articleName}`}
-                        title={previousArticle.articleName}
-                    >
-                        ←
-                    </button>
-                )}
+                <button
+                    type="button"
+                    onClick={() =>
+                        previousPath
+                            ? navigate(previousPath)
+                            : navigate(`/${course}`)
+                    }
+                    className="
+                        w-16 h-20
+                        flex items-center justify-center
+                        rounded-xl
+                        border border-border
+                        bg-panel-2
+                        text-text-2 text-4xl
+                        shadow-sm
+                        transition-all duration-200
+                        hover:bg-panel-3
+                        hover:shadow-md
+                        hover:scale-105
+                        active:scale-95
+                        cursor-pointer
+                    "
+                    aria-label={
+                        previousArticle
+                            ? `Previous article: ${previousArticle.articleName}`
+                            : "Back to course"
+                    }
+                    title={
+                        previousArticle
+                            ? previousArticle.articleName
+                            : "Back to course"
+                    }
+                >
+                    ←
+                </button>
             </div>
 
             {/* Article */}
@@ -107,7 +130,20 @@ function Article() {
                     <button
                         type="button"
                         onClick={() => navigate(nextPath)}
-                        className="w-full h-12 rounded-lg border cursor-pointer"
+                        className="
+                            w-16 h-20
+                            flex items-center justify-center
+                            rounded-xl
+                            border border-border
+                            bg-panel-2
+                            text-text-2 text-4xl
+                            shadow-sm
+                            transition-all duration-200
+                            hover:bg-panel-3
+                            hover:shadow-md
+                            hover:scale-105
+                            active:scale-95
+                            cursor-pointer"
                         aria-label={`Next article: ${nextArticle.articleName}`}
                         title={nextArticle.articleName}
                     >
