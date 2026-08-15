@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { articles } from "../articles";
 import { courses } from "../courses";
 import { getArticleNavigation } from "../utils/ArticleNavigation";
@@ -121,7 +121,15 @@ function Article() {
 
             {/* Article */}
             <div className="mr-60 ml-60 py-10 min-h-screen">
+                <div className="article">
+                <Link
+                    to={`/${course}`}
+                    className="
+                        inline-flex items-center gap-2 mb-8 text-base text-accent hover:translate-x-[2px]">
+                    ← Back to Course
+                </Link>
                 <ArticleContent />
+                </div>
             </div>
 
             {/* Next article */}

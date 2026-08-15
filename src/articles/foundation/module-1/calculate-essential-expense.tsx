@@ -1,7 +1,6 @@
 function calculateEssentialExpense() {
     return (
         <>
-        <div className="article">            
             <h1>
             How to Calculate your Monthly Essential Expenses
             </h1>
@@ -168,10 +167,9 @@ function calculateEssentialExpense() {
             Want to see how this works?
             </h3>
 
-            <a>
+            <button>
             Calculate your monthly essential expenses using our example →
-            </a>
-        </div>
+            </button>
         </>
     );
 }
