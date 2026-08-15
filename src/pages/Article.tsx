@@ -26,8 +26,22 @@ function Article() {
     }
 
     return (
-        <div className="mr-60 ml-60 py-10 min-h-screen">
-            <ArticleContent />
+        <div className="relative">
+            <div className="fixed left-6 top-1/2 -translate-y-1/2 w-12">
+                <button className="w-full h-12 rounded-lg border">
+                    ←
+                </button>
+            </div>
+
+            <div className="mr-60 ml-60 py-10 min-h-screen">
+                <ArticleContent />
+            </div>
+
+            <div className="fixed right-6 top-1/2 -translate-y-1/2 w-12">
+                <button className="w-full h-12 rounded-lg border">
+                    →
+                </button>
+            </div>
         </div>
     );
 }
