@@ -77,6 +77,11 @@ function Article() {
     const nextPath = nextArticle
         ? `/${course}/${nextArticle.moduleRef}/${nextArticle.articleRef}`
         : null;
+    
+    // Find the current module
+    const currentModule = courseData.content.content.find(
+        item => item.moduleRef === module
+    );
 
     return (
         <div className="relative">
@@ -122,13 +127,21 @@ function Article() {
             {/* Article */}
             <div className="mr-60 ml-60 py-10 min-h-screen">
                 <div className="article">
-                <Link
-                    to={`/${course}`}
-                    className="
-                        inline-flex items-center gap-2 mb-8 text-base text-accent hover:translate-x-[2px]">
-                    ← Back to Course
-                </Link>
-                <ArticleContent />
+
+                    {/* Course / Module Breadcrumb */}
+                    <div className="mb-8 flex justify-between">
+                        <Link
+                            to={`/${course}`}
+                            className="inline-flex items-center gap-2 text-base text-accent transition-all duration-200 hover:translate-x-[2px] underline">
+                            ← Back to Course
+                        </Link>
+
+                        <span className="mt-4 text-right text-base text-accent">
+                            {currentModule?.moduleName}
+                        </span>
+                    </div>
+
+                    <ArticleContent />
                 </div>
             </div>
 
