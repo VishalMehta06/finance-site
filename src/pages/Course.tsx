@@ -24,11 +24,11 @@ function Course() {
     return (
         <>
             <div className="min-h-screen">
-                <h1 className="text-4xl text-center font-bold pt-10">
+                <h1 className="text-4xl text-center font-bold pt-20">
                     {selectedCourse.title}
                 </h1>
 
-                <div className="mx-60 py-20">
+                <div className="mx-60 pt-12.5 pb-20">
                     <CourseContent {...selectedCourse.content} />
                 </div>
             </div>
