@@ -1,5 +1,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { articles } from "../articles";
+import { courses } from "../courses";
+import { getArticleNavigation } from "../utils/ArticleNavigation";
 
 function Article() {
     const { course, module, article } = useParams();
@@ -9,6 +11,7 @@ function Article() {
         return <h1>Article not found</h1>;
     }
 
+    // Find the article component using the URL
     const articleKey = `${course}/${module}/${article}`;
 
     const ArticleContent =
@@ -16,31 +19,101 @@ function Article() {
 
     if (!ArticleContent) {
         return (
-        <div className="min-h-screen content-center text-center">
-            <h1 className="text-3xl text-error font-bold">Article not found</h1>
-            <button type="button" onClick={() => navigate(-1)} className="py-3 px-5 my-10 rounded-xl cursor-pointer bg-panel-2 text-text-2">
-                Go Back
-            </button>
-        </div>
+            <div className="min-h-screen content-center text-center">
+                <h1 className="text-3xl text-error font-bold">
+                    Article not found
+                </h1>
+
+                <button
+                    type="button"
+                    onClick={() => navigate(-1)}
+                    className="py-3 px-5 my-10 rounded-xl cursor-pointer bg-panel-2 text-text-2"
+                >
+                    Go Back
+                </button>
+            </div>
         );
     }
 
-    return (
-        <div className="relative">
-            <div className="fixed left-6 top-1/2 -translate-y-1/2 w-12">
-                <button className="w-full h-12 rounded-lg border">
-                    ←
+    // Find the course
+    const courseData = courses[course as keyof typeof courses];
+
+    if (!courseData) {
+        return (
+            <div className="min-h-screen content-center text-center">
+                <h1 className="text-3xl text-error font-bold">
+                    Course not found
+                </h1>
+
+                <button
+                    type="button"
+                    onClick={() => navigate(-1)}
+                    className="py-3 px-5 my-10 rounded-xl cursor-pointer bg-panel-2 text-text-2"
+                >
+                    Go Back
                 </button>
             </div>
+        );
+    }
 
+    // Flatten the course structure into navigation order
+    const navigation = getArticleNavigation(courseData.content);
+
+    // Find where the current article is in that order
+    const currentIndex = navigation.findIndex(
+        item =>
+            item.moduleRef === module &&
+            item.articleRef === article
+    );
+
+    // Get previous and next articles
+    const previousArticle = navigation[currentIndex - 1];
+    const nextArticle = navigation[currentIndex + 1];
+
+    // Build their URLs
+    const previousPath = previousArticle
+        ? `/${course}/${previousArticle.moduleRef}/${previousArticle.articleRef}`
+        : null;
+
+    const nextPath = nextArticle
+        ? `/${course}/${nextArticle.moduleRef}/${nextArticle.articleRef}`
+        : null;
+
+    return (
+        <div className="relative">
+            {/* Previous article */}
+            <div className="fixed left-6 top-1/2 -translate-y-1/2 w-12">
+                {previousPath && (
+                    <button
+                        type="button"
+                        onClick={() => navigate(previousPath)}
+                        className="w-full h-12 rounded-lg border cursor-pointer"
+                        aria-label={`Previous article: ${previousArticle.articleName}`}
+                        title={previousArticle.articleName}
+                    >
+                        ←
+                    </button>
+                )}
+            </div>
+
+            {/* Article */}
             <div className="mr-60 ml-60 py-10 min-h-screen">
                 <ArticleContent />
             </div>
 
+            {/* Next article */}
             <div className="fixed right-6 top-1/2 -translate-y-1/2 w-12">
-                <button className="w-full h-12 rounded-lg border">
-                    →
-                </button>
+                {nextPath && (
+                    <button
+                        type="button"
+                        onClick={() => navigate(nextPath)}
+                        className="w-full h-12 rounded-lg border cursor-pointer"
+                        aria-label={`Next article: ${nextArticle.articleName}`}
+                        title={nextArticle.articleName}
+                    >
+                        →
+                    </button>
+                )}
             </div>
         </div>
     );
