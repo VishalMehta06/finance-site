@@ -132,8 +132,8 @@ function Article() {
                     <div className="mb-8 flex justify-between">
                         <Link
                             to={`/${course}`}
-                            className="inline-flex items-center gap-2 text-base text-accent transition-all duration-200 hover:translate-x-[2px] underline">
-                            ← Back to Course
+                            className="inline-flex items-center gap-2 text-base text-accent transition-all duration-200 hover:translate-x-[2px]">
+                            ← <span className="underline">Back to Course</span>
                         </Link>
 
                         <span className="mt-4 text-right text-base text-accent">
